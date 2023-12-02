@@ -354,6 +354,9 @@ function MapPickerMultiple(
 	"""
 end
 
+# ╔═╡ 9e3d29d9-3447-40c5-a480-f49cfe668d82
+@bind places MapPickerMultiple(52.0915, 5.116, 12)
+
 # ╔═╡ 9bcc4b0b-2ba4-4871-97d6-7a66411eeea3
 export MapPicker, MapPickerMultiple, TileLayer, osm_tile_layer
 
@@ -393,6 +396,7 @@ version = "0.1.8"
 # ╠═b2af50d6-c7c8-41b2-8ac4-86ae54caf98c
 # ╠═2d3d6924-ca22-4ea9-98bd-a195d8abec99
 # ╠═9c9b2151-765f-422c-84bb-669aaf8c424b
+# ╠═9e3d29d9-3447-40c5-a480-f49cfe668d82
 # ╠═9bcc4b0b-2ba4-4871-97d6-7a66411eeea3
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
