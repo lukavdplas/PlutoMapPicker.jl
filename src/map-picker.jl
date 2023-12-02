@@ -50,7 +50,7 @@ Create an interactive map to pick a location.
 
 Basic usage in a Pluto notebook:
 ```julia
-@bind place MapPicker(0.0, 0.0, 1);
+@bind place MapPicker(0.0, 0.0, 1)
 ```
 
 Uses [Leaflet](https://leafletjs.com/) to render a map. By default, the map uses tiles from OpenStreetMap. Please read OSM's [usage policy](https://operations.osmfoundation.org/policies/tiles/).
@@ -196,13 +196,19 @@ function MapPicker(
 	"""
 end
 
+# ╔═╡ b2af50d6-c7c8-41b2-8ac4-86ae54caf98c
+@bind place MapPicker(52.0915, 5.116, 12)
+
+# ╔═╡ 2d3d6924-ca22-4ea9-98bd-a195d8abec99
+place
+
 # ╔═╡ 9c9b2151-765f-422c-84bb-669aaf8c424b
 """
 Create an interactive map to pick multiple locations
 
 Basic usage in a Pluto notebook:
 ```julia
-@bind places MapPickerMultiple(0.0, 0.0, 1);
+@bind places MapPickerMultiple(0.0, 0.0, 1)
 ```
 
 Uses [Leaflet](https://leafletjs.com/) to render a map. By default, the map uses tiles from OpenStreetMap. Please read OSM's [usage policy](https://operations.osmfoundation.org/policies/tiles/).
@@ -348,6 +354,9 @@ function MapPickerMultiple(
 	"""
 end
 
+# ╔═╡ 9bcc4b0b-2ba4-4871-97d6-7a66411eeea3
+export MapPicker, MapPickerMultiple, TileLayer, osm_tile_layer
+
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
@@ -381,6 +390,9 @@ version = "0.1.8"
 # ╠═784a312f-2da7-4d16-b9eb-85760c9e98be
 # ╠═370d3360-2891-458a-bc7a-fd2bc9801ec2
 # ╠═3c1c32ec-f5c7-4527-8e8a-2261f1a05847
+# ╠═b2af50d6-c7c8-41b2-8ac4-86ae54caf98c
+# ╠═2d3d6924-ca22-4ea9-98bd-a195d8abec99
 # ╠═9c9b2151-765f-422c-84bb-669aaf8c424b
+# ╠═9bcc4b0b-2ba4-4871-97d6-7a66411eeea3
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
