@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.32
+# v0.19.35
 
 using Markdown
 using InteractiveUtils
@@ -19,7 +19,7 @@ using HypertextLiteral
 
 # ╔═╡ 784a312f-2da7-4d16-b9eb-85760c9e98be
 """
-A tile layer that can be used in a map.
+A tile layer that can be used in a Leaflet map.
 
 The configuration includes:
 - `url`: a url template to request tiles
@@ -49,6 +49,7 @@ osm_tile_layer = TileLayer(
 Create an interactive map to pick a location.
 
 Basic usage in a Pluto notebook:
+
 ```julia
 @bind place MapPicker(0.0, 0.0, 1)
 ```
@@ -59,7 +60,7 @@ Users can place a marker on the map to select a location. If you use `@bind` in 
 
 Input:
 
-You have to supply the latitude and longitude that the map should initially centre on, as well as the initial level.
+You have to supply the latitude and longitude that the map should initially centre on, as well as the initial zoom level.
 
 Additional parameters:
 - `tile_layer`: a `TileLayer` configuration.
@@ -373,8 +374,9 @@ HypertextLiteral = "~0.9.5"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.7.0"
+julia_version = "1.9.4"
 manifest_format = "2.0"
+project_hash = "5b37abdf7398dc5da4cd347d0609990238d895bb"
 
 [[deps.HypertextLiteral]]
 deps = ["Tricks"]

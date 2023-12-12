@@ -26,8 +26,10 @@ using PlutoMapPicker
 @bind place MapPicker(0.0, 0.0, 1)
 
 # to pick multiple locations
-@bind places MapPicker(0.0, 0.0, 1)
+@bind places MapPickerMultiple(0.0, 0.0, 1)
 ```
+
+See the docstrings in [map-picker.jl](/src/map-picker.jl) for more detailed documentation.
 
 ## Licence
 
