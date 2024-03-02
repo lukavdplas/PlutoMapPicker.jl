@@ -6,9 +6,11 @@ A simple location picker widget for Pluto.jl notebooks. It creates an interactiv
 
 ## Prerequisites
 
-PlutoMapPicker is a package for [Julia](https://julialang.org/). It is is designed to be used in [Pluto notebooks](https://github.com/fonsp/Pluto.jl), but it is possible you find a use for it outside of Pluto.
+PlutoMapPicker is a package for [Julia](https://julialang.org/). It is is designed to be used in [Pluto notebooks](https://github.com/fonsp/Pluto.jl). If you are using Pluto, you're ready to use this package!
 
-To install:
+### Using PlutoMapPicker outside of Pluto
+
+It is possible to use `PlutoMapPicker` in Julia without Pluto. If you don't have the benefit of Pluto's package manager, you can install it with:
 
 ```julia
 using Pkg
