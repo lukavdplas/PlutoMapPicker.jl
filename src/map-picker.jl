@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.35
+# v0.19.38
 
 using Markdown
 using InteractiveUtils
@@ -328,7 +328,7 @@ function MapPickerMultiple(
 			}
 
 			function onMarkerKeydown(e, marker) {
-				var key = e.originalEvent.key;
+				let key = e.originalEvent.key;
 				if (key === 'Delete') {
 					removeMarker(marker);
 				}
@@ -339,12 +339,16 @@ function MapPickerMultiple(
 			}
 
 			function onMapKeydown(e) {
-				var key = e.originalEvent.key;
-				if (key === 'Enter') {
-					addMarker(map.getCenter());
-				}
-				if (key === 'Delete') {
-					removeAllMarkers();
+				let key = e.originalEvent.key;
+				let target = e.originalEvent.target;
+
+				if (target.id === 'map') {
+					if (key === 'Enter') {
+						addMarker(map.getCenter());
+					}
+					if (key === 'Delete') {
+						removeAllMarkers();
+					}				
 				}
 			}
 
@@ -374,7 +378,7 @@ HypertextLiteral = "~0.9.5"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.9.4"
+julia_version = "1.6.7"
 manifest_format = "2.0"
 project_hash = "5b37abdf7398dc5da4cd347d0609990238d895bb"
 
