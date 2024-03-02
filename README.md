@@ -37,3 +37,6 @@ See the docstrings in [map-picker.jl](/src/map-picker.jl) for more detailed docu
 
 This package is shared under an MIT licence. See [LICENSE](./LICENSE) for more information.
 
+## Other packages
+
+📍 Looking for a way to pick coordinates on an image? Check out https://github.com/fonsp/PlutoImageCoordinatePicker.jl
