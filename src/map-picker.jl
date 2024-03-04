@@ -179,12 +179,16 @@ function MapPicker(
 
 			function onMapKeydown(e) {
 				var key = e.originalEvent.key;
-				if (key === 'Enter') {
-					addMarker(map.getCenter());
-				}
-				if (key === 'Delete') {
-					if (marker) {
-						removeMarker(marker);
+				let target = e.originalEvent.target;
+				
+				if (target.id === 'map') {
+					if (key === 'Enter') {
+						addMarker(map.getCenter());
+					}
+					if (key === 'Delete') {
+						if (marker) {
+							removeMarker(marker);
+						}
 					}
 				}
 			}
@@ -198,7 +202,7 @@ function MapPicker(
 end
 
 # ╔═╡ b2af50d6-c7c8-41b2-8ac4-86ae54caf98c
-@bind place MapPicker(52.0915, 5.116, 12)
+@bind place MapPicker(52.0915, 5.116, 12, tile_layer=osm_tile_layer)
 
 # ╔═╡ 2d3d6924-ca22-4ea9-98bd-a195d8abec99
 place
