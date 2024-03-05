@@ -44,6 +44,21 @@ osm_tile_layer = TileLayer(
 	)
 )
 
+# ╔═╡ 34a08f16-4269-4801-931b-03a1f033328c
+map_picker_instructions = """
+Place a marker on the map!
+
+Mouse controls:
+- Click on the map to place a marker
+- Click on a marker to remove it
+- Drag the map to move the view, scroll to zoom
+
+Keyboard controls:
+- When focused on the map, press Enter to create a marker, and Delete to remove it
+- When focused on the marker, press Delete to remove it
+- Use the arrow keys to move the view, and +/- to zoom
+"""
+
 # ╔═╡ 3c1c32ec-f5c7-4527-8e8a-2261f1a05847
 """
 Create an interactive map to pick a location.
@@ -71,20 +86,6 @@ function MapPicker(
 	tile_layer::TileLayer = osm_tile_layer,
 	height::Number = 500,
 )::HypertextLiteral.Result
-	instructions = """
-	Place a marker on the map!
-
-	Mouse controls:
-	- Click on the map to place a marker
-	- Click on a marker to remove it
-	- Drag the map to move the view, scroll to zoom
-	
-	Keyboard controls:
-	- When focused on the map, press Enter to create a marker, and Delete to remove it
-	- When focused on the marker, press Delete to remove it
-	- Use the arrow keys to move the view, and +/- to zoom
-	"""
-	
 	@htl """
 	<div>
 		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -110,7 +111,7 @@ function MapPicker(
 
 			function showInstructions(e) {
 				e.stopPropagation();
-				alert($instructions);
+				alert($map_picker_instructions);
 			} 
 
 			L.Control.Instruction = L.Control.extend({
@@ -207,6 +208,19 @@ end
 # ╔═╡ 2d3d6924-ca22-4ea9-98bd-a195d8abec99
 place
 
+# ╔═╡ 92f5e0cd-a4bc-4bbf-baf8-bcc6a5f93fa2
+map_picker_multiple_instructions = """
+Place markers on the map!
+
+Mouse controls:
+- Click on the map to remove a marker
+- Click on a marker to remove it
+
+Keyboard controls:
+- When focused on the map, press Enter to create a marker, and Delete to remove all markers
+- When focused on a marker, press Delete to remove it
+"""
+
 # ╔═╡ 9c9b2151-765f-422c-84bb-669aaf8c424b
 """
 Create an interactive map to pick multiple locations
@@ -233,18 +247,6 @@ function MapPickerMultiple(
 	tile_layer::TileLayer = osm_tile_layer,
 	height::Number = 500,
 )::HypertextLiteral.Result
-	instructions = """
-	Place markers on the map!
-
-	Mouse controls:
-	- Click on the map to remove a marker
-	- Click on a marker to remove it
-	
-	Keyboard controls:
-	- When focused on the map, press Enter to create a marker, and Delete to remove all markers
-	- When focused on a marker, press Delete to remove it
-	"""
-	
 	@htl """
 	<div>
 		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -269,7 +271,7 @@ function MapPickerMultiple(
 			// add instructions control
 			function showInstructions(e) {
 				e.stopPropagation();
-				alert($instructions);
+				alert($map_picker_multiple_instructions);
 			} 
 
 			L.Control.Instruction = L.Control.extend({
@@ -402,9 +404,11 @@ version = "0.1.8"
 # ╠═d0fb0290-9101-11ee-1593-69ea7d8b0c00
 # ╠═784a312f-2da7-4d16-b9eb-85760c9e98be
 # ╠═370d3360-2891-458a-bc7a-fd2bc9801ec2
+# ╠═34a08f16-4269-4801-931b-03a1f033328c
 # ╠═3c1c32ec-f5c7-4527-8e8a-2261f1a05847
 # ╠═b2af50d6-c7c8-41b2-8ac4-86ae54caf98c
 # ╠═2d3d6924-ca22-4ea9-98bd-a195d8abec99
+# ╠═92f5e0cd-a4bc-4bbf-baf8-bcc6a5f93fa2
 # ╠═9c9b2151-765f-422c-84bb-669aaf8c424b
 # ╠═9e3d29d9-3447-40c5-a480-f49cfe668d82
 # ╠═9bcc4b0b-2ba4-4871-97d6-7a66411eeea3
