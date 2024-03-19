@@ -34,13 +34,25 @@ end
 
 # ╔═╡ 370d3360-2891-458a-bc7a-fd2bc9801ec2
 """
-TileLayer configuration for open street map. Please read OSM's [tile usage policy](https://operations.osmfoundation.org/policies/tiles/) to decide if your usage complies with it.
+TileLayer for open street map. Please read OSM's [tile usage policy](https://operations.osmfoundation.org/policies/tiles/) to decide if your usage complies with it.
 """
 osm_tile_layer = TileLayer(
 	"https://tile.openstreetmap.org/{z}/{x}/{y}.png",
 	Dict(
 		"maxZoom" => 19,
 		"attribution" => "&copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
+	)
+)
+
+# ╔═╡ 3b1fdb24-81f9-46b1-8450-9ceae2204556
+"""
+TileLayer with Open Street Map's "Humanitarian" style. Please read the [usage policy](https://www.openstreetmap.fr/fonds-de-carte/) to decide if your usage complies with it.
+"""
+humanitarian_tile_layer = TileLayer(
+	"https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
+	Dict(
+		"maxZoom" => 19,
+		"attribution" => "&copy; <a href='https://osm.org/copyright' target='_blank'>OpenStreetMap</a> contributors"
 	)
 )
 
@@ -404,6 +416,7 @@ version = "0.1.8"
 # ╠═d0fb0290-9101-11ee-1593-69ea7d8b0c00
 # ╠═784a312f-2da7-4d16-b9eb-85760c9e98be
 # ╠═370d3360-2891-458a-bc7a-fd2bc9801ec2
+# ╠═3b1fdb24-81f9-46b1-8450-9ceae2204556
 # ╠═34a08f16-4269-4801-931b-03a1f033328c
 # ╠═3c1c32ec-f5c7-4527-8e8a-2261f1a05847
 # ╠═b2af50d6-c7c8-41b2-8ac4-86ae54caf98c
