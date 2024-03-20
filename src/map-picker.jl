@@ -17,6 +17,11 @@ end
 # ╔═╡ d0fb0290-9101-11ee-1593-69ea7d8b0c00
 using HypertextLiteral
 
+# ╔═╡ a09bf4e8-270e-4331-9961-b27513efdf72
+md"""
+## Tile layers
+"""
+
 # ╔═╡ 784a312f-2da7-4d16-b9eb-85760c9e98be
 """
 A tile layer that can be used in a Leaflet map.
@@ -32,6 +37,18 @@ struct TileLayer
 	options::Dict{String,Any}
 end
 
+# ╔═╡ e248e1dc-6aa6-4bfb-aba8-5ec9be8ed87a
+attribution_stadia = "&copy; <a href='https://stadiamaps.com/'>Stadia Maps</a>"
+
+# ╔═╡ 6e90fd7e-e4b6-4883-8ad5-6eb4341cc6b4
+attribution_stamen = "&copy; <a href='https://stamen.com/'>Stamen Design</a>"
+
+# ╔═╡ 4e8e3342-5b83-4849-a4c6-443dd2013ee8
+attribution_openmaptiles = "&copy; <a href='https://openmaptiles.org/'>OpenMapTiles</a>"
+
+# ╔═╡ 2e42276e-3f5a-4a9e-a905-24e618a705be
+attribution_osm = "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
+
 # ╔═╡ 370d3360-2891-458a-bc7a-fd2bc9801ec2
 """
 TileLayer for open street map. Please read OSM's [tile usage policy](https://operations.osmfoundation.org/policies/tiles/) to decide if your usage complies with it.
@@ -40,21 +57,97 @@ osm_tile_layer = TileLayer(
 	"https://tile.openstreetmap.org/{z}/{x}/{y}.png",
 	Dict(
 		"maxZoom" => 19,
-		"attribution" => "&copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
+		"attribution" => attribution_osm
 	)
 )
 
 # ╔═╡ 3b1fdb24-81f9-46b1-8450-9ceae2204556
-"""
-TileLayer with Open Street Map's "Humanitarian" style. Please read the [usage policy](https://www.openstreetmap.fr/fonds-de-carte/) to decide if your usage complies with it.
-"""
-humanitarian_tile_layer = TileLayer(
-	"https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
+osm_humanitarian_tile_layer = TileLayer(
+	"https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
 	Dict(
 		"maxZoom" => 19,
-		"attribution" => "&copy; <a href='https://osm.org/copyright' target='_blank'>OpenStreetMap</a> contributors"
+		"subdomains" => "ab",
+		"attribution" => attribution_osm
 	)
 )
+
+# ╔═╡ b756ba60-99bc-4825-8b73-dec91139f52b
+"""
+TileLayers for Open Street Map. Please read OSM's [tile usage policy](https://operations.osmfoundation.org/policies/tiles/) to decide if your usage complies with it.
+"""
+osm_tile_layers = (
+	standard = osm_tile_layer,
+	humanitarian = osm_humanitarian_tile_layer,
+)
+
+# ╔═╡ c0ab32a2-20f8-412b-a345-64cde911a7ba
+stadia_osm_bright_tile_layer = TileLayer(
+	"https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png",
+	Dict(
+		"maxZoom" => 20,
+		"attribution" =>  "$attribution_stadia $attribution_openmaptiles $attribution_osm",
+		"referrerPolicy" => "origin",
+	)
+)
+
+# ╔═╡ 30b61543-72f5-4ae4-8167-4631e0556ddd
+stadia_outdoors_tile_layer = TileLayer(
+	"https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png",
+	Dict(
+		"maxZoom" => 20,
+		"attribution" =>  "$attribution_stadia $attribution_openmaptiles $attribution_osm",
+		"referrerPolicy" => "origin",
+	)
+)
+
+# ╔═╡ 34730e40-b5b7-4f90-85e5-7eeb09a1fc8a
+stadia_stamen_toner_tile_layer = TileLayer(
+	"https://tiles.stadiamaps.com/tiles/stamen_toner/{z}/{x}/{y}{r}.png",
+	Dict(
+		"maxZoom" => 20,
+		"attribution" =>  "$attribution_stadia $attribution_stamen $attribution_openmaptiles $attribution_osm",
+		"referrerPolicy" => "origin",
+	)
+)
+
+# ╔═╡ 14b2f1b1-32d3-400c-9c69-6d348d795592
+stadia_stamen_watercolor_tile_layer = TileLayer(
+	"https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg",
+	Dict(
+		"maxZoom" => 16,
+		"attribution" =>  "$attribution_stadia $attribution_stamen $attribution_openmaptiles $attribution_osm",
+		"referrerPolicy" => "origin",
+	)
+)
+
+# ╔═╡ da8fca16-2e46-40ae-a67c-b7d54178be43
+"""
+Tile layers that retrieve tiles from Stadia Maps.
+
+See [the documentation of Stadia Maps](https://docs.stadiamaps.com/) for more information about their terms of service.
+
+## Styles
+
+- `osm_bright`: similar to the OpenStreetMap layout.
+- `outdoors`: similar to `osm_bright`, but puts more focus on things like parks, hiking trails, mountains, etc.
+- `stamen_toner`: a high-contrast, black and white style.
+- `stamen_watercolor`: looks like a watercolour painting.
+
+## Authentication
+
+At the time of writing, Stadia Maps allows unauthenticated requests from `localhost`, such as those from a local Pluto notebook. If you want to host your notebook online, you should request an API key and create a `TileLayer` that uses your API key. 
+"""
+stadia_tile_layers = (
+	osm_bright = stadia_osm_bright_tile_layer,
+	outdoors = stadia_outdoors_tile_layer,
+	stamen_toner = stadia_stamen_toner_tile_layer,
+	stamen_watercolor = stadia_stamen_watercolor_tile_layer,
+)
+
+# ╔═╡ b0f4b7d6-c2fd-4f6d-ad9e-77ede10b5d11
+md"""
+## MapPicker
+"""
 
 # ╔═╡ 34a08f16-4269-4801-931b-03a1f033328c
 map_picker_instructions = """
@@ -95,7 +188,7 @@ Additional parameters:
 """
 function MapPicker(
 	latitude::Number, longitude::Number, zoom::Number;
-	tile_layer::TileLayer = osm_tile_layer,
+	tile_layer::TileLayer = osm_tile_layers.standard,
 	height::Number = 500,
 )::HypertextLiteral.Result
 	@htl """
@@ -214,11 +307,19 @@ function MapPicker(
 	"""
 end
 
+# ╔═╡ 393f9939-6b71-4c49-907c-0c819cc45f9b
+@bind place2 MapPicker(52.0915, 5.116, 12)
+
 # ╔═╡ b2af50d6-c7c8-41b2-8ac4-86ae54caf98c
-@bind place MapPicker(52.0915, 5.116, 12, tile_layer=osm_tile_layer)
+@bind place MapPicker(52.0915, 5.116, 12)
 
 # ╔═╡ 2d3d6924-ca22-4ea9-98bd-a195d8abec99
 place
+
+# ╔═╡ 396475cb-2a4e-4f5a-8fce-af8535f2c157
+md"""
+## MapPickerMultiple
+"""
 
 # ╔═╡ 92f5e0cd-a4bc-4bbf-baf8-bcc6a5f93fa2
 map_picker_multiple_instructions = """
@@ -256,7 +357,7 @@ Additional parameters:
 """
 function MapPickerMultiple(
 	latitude::Number, longitude::Number, zoom::Number;
-	tile_layer::TileLayer = osm_tile_layer,
+	tile_layer::TileLayer = osm_tile_layers.standard,
 	height::Number = 500,
 )::HypertextLiteral.Result
 	@htl """
@@ -380,8 +481,11 @@ end
 # ╔═╡ 9e3d29d9-3447-40c5-a480-f49cfe668d82
 @bind places MapPickerMultiple(52.0915, 5.116, 12)
 
-# ╔═╡ 9bcc4b0b-2ba4-4871-97d6-7a66411eeea3
-export MapPicker, MapPickerMultiple, TileLayer, osm_tile_layer
+# ╔═╡ 1e2075fe-0479-4348-b6f7-732c958ae35a
+places
+
+# ╔═╡ 3bea7d19-ea4e-4dc3-826d-6228c62e39da
+export TileLayer, osm_tile_layer, osm_tile_layers, stadia_tile_layers, MapPicker, MapPickerMultiple
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -414,16 +518,31 @@ version = "0.1.8"
 
 # ╔═╡ Cell order:
 # ╠═d0fb0290-9101-11ee-1593-69ea7d8b0c00
+# ╟─a09bf4e8-270e-4331-9961-b27513efdf72
 # ╠═784a312f-2da7-4d16-b9eb-85760c9e98be
+# ╠═b756ba60-99bc-4825-8b73-dec91139f52b
 # ╠═370d3360-2891-458a-bc7a-fd2bc9801ec2
 # ╠═3b1fdb24-81f9-46b1-8450-9ceae2204556
+# ╠═da8fca16-2e46-40ae-a67c-b7d54178be43
+# ╠═393f9939-6b71-4c49-907c-0c819cc45f9b
+# ╠═c0ab32a2-20f8-412b-a345-64cde911a7ba
+# ╠═30b61543-72f5-4ae4-8167-4631e0556ddd
+# ╠═34730e40-b5b7-4f90-85e5-7eeb09a1fc8a
+# ╠═14b2f1b1-32d3-400c-9c69-6d348d795592
+# ╠═e248e1dc-6aa6-4bfb-aba8-5ec9be8ed87a
+# ╠═6e90fd7e-e4b6-4883-8ad5-6eb4341cc6b4
+# ╠═4e8e3342-5b83-4849-a4c6-443dd2013ee8
+# ╠═2e42276e-3f5a-4a9e-a905-24e618a705be
+# ╟─b0f4b7d6-c2fd-4f6d-ad9e-77ede10b5d11
 # ╠═34a08f16-4269-4801-931b-03a1f033328c
 # ╠═3c1c32ec-f5c7-4527-8e8a-2261f1a05847
 # ╠═b2af50d6-c7c8-41b2-8ac4-86ae54caf98c
 # ╠═2d3d6924-ca22-4ea9-98bd-a195d8abec99
+# ╟─396475cb-2a4e-4f5a-8fce-af8535f2c157
 # ╠═92f5e0cd-a4bc-4bbf-baf8-bcc6a5f93fa2
 # ╠═9c9b2151-765f-422c-84bb-669aaf8c424b
 # ╠═9e3d29d9-3447-40c5-a480-f49cfe668d82
-# ╠═9bcc4b0b-2ba4-4871-97d6-7a66411eeea3
+# ╠═1e2075fe-0479-4348-b6f7-732c958ae35a
+# ╠═3bea7d19-ea4e-4dc3-826d-6228c62e39da
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
