@@ -135,7 +135,9 @@ See [the documentation of Stadia Maps](https://docs.stadiamaps.com/) for more in
 
 ## Authentication
 
-At the time of writing, Stadia Maps allows unauthenticated requests from `localhost`, such as those from a local Pluto notebook. If you want to host your notebook online, you should request an API key and create a `TileLayer` that uses your API key. 
+Requests to Stadia Maps are not authenticated and do not contain an API key.
+
+At the time of writing, Stadia Maps allows unauthenticated requests from `localhost`, such as those from a local Pluto notebook. If you want to host your notebook online, you should request an API key from Stadia Maps and create a `TileLayer` that uses your API key. 
 """
 stadia_tile_layers = (
 	osm_bright = stadia_osm_bright_tile_layer,
